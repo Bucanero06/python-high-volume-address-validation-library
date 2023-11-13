@@ -51,7 +51,9 @@ class HighVolumeAVMain:
 
     Returns:
         _type_: _description_
-    """  
+    """
+
+    @staticmethod
     def read_and_store_addresses():
 
         try:
@@ -61,6 +63,7 @@ class HighVolumeAVMain:
         except IndexError as ie:
             print(ie)
 
+    @staticmethod
     def parse_av_response():
         # This functions checks if the load in the shelve object is accurate or not
         # read_write_addressess_load.test_datastore()
@@ -94,6 +97,8 @@ class HighVolumeAVMain:
     """_summary_:
     open the file in the write mode, read the shelve file, store the content back as CSV
     """
+
+    @staticmethod
     def create_export_csv():
 
         with open(config.output_csv, 'w') as outputCSV:
@@ -132,6 +137,8 @@ class HighVolumeAVMain:
     Read the shelve file
     Store the content back as JSON
     """
+
+    @staticmethod
     def create_export_json():
 
         with open(config.output_csv, 'w') as output_csv:
@@ -146,7 +153,8 @@ class HighVolumeAVMain:
             outputJson=json.dumps(dict(address_shelve), indent=4 )
             return outputJson
 
-    # Store duplicate addresses, output_csv will process addresses once     
+    # Store duplicate addresses, output_csv will process addresses once
+    @staticmethod
     def print_duplication():
     
         with open('duplicationReport.csv', 'w') as duplication_report:
@@ -159,6 +167,8 @@ class HighVolumeAVMain:
     By not doing this it creates a bug if this program is run multiple times from same computer
     without changing the shelve file name
     """
+
+    @staticmethod
     def teardown():
    
         for dbFile in Path(config.directory).glob('*.db'):
